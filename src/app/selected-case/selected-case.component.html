@@ -1,0 +1,49 @@
+<div [ngClass]="accepted ? 'bg-black overflow-y-hidden animate-pulse duration-75 transition-colors ease-out opacity-80 w-full h-screen absolute z-[5]' : 'hidden'"></div>
+<div class=" w-full min-h-screen flex justify-center items-center" >
+    <div class="bg-main rounded-lg p-16 max-w-[90rem] w-full mt-16 mb-8  flex flex-col justify-around">
+        <header class="font-main mb-16">
+            <h1 class="text-5xl text-white ">Diagnóstico da Doença da Soja</h1>
+        </header>
+        <main class="flex flex-col">
+           <div class="flex flex-col  ">
+                <div  class=" py-3 flex flex-row justify-between">
+                    <h2 class="text-4xl text-white">Casos similares</h2>
+                </div>
+                <app-accept-modal [ngClass]="accepted ? 'z-10 w-full relative text-center' : 'hidden'"></app-accept-modal>
+                <div 
+                class= "flex flex-col mt-6 duration-100 items-center max-h-[36rem] overflow-y-scroll"
+                >
+                    <table class="bg-white w-[96%]  ">
+                        <tr class=" text-main font-main text-4xl">
+                            <th class="text-center py-10  w-[50%]">Problema</th>
+                            <th class="text-center ">Solução</th>
+                        </tr>
+                        <tr *ngFor="let item of data"
+                        class="text-second-button hover:bg-main-button hover:text-white ease-in duration-100 font-main text-3xl text-center border-r border-main"
+                        >
+                            <td class="border-r border-main py-8">{{item.data}}</td>
+                            <td>{{item.value}}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+            <!-- <app-accept-modal [ngClass]="accepted ? 'z-100' : 'hidden'"></app-accept-modal> -->
+        </main>
+        <footer class="mt-16">
+            <div class="  flex flex-col items-center mb-5 ">
+                <button 
+                class=" w-full hover:bg-[#27AE60] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-main-button"
+                (click)="Accept()">
+                    Aceitar
+                </button>
+            </div>
+            <div class="  flex flex-col items-center ">
+                <button [routerLink]="'../../../../cases/compair/'+caseId" class=" w-full hover:bg-[#333] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-second-button">
+                    Voltar
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+

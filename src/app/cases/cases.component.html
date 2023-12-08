@@ -1,0 +1,76 @@
+<div class=" w-full min-h-screen flex justify-center items-center" >
+    <div class="bg-main rounded-lg p-16 max-w-[90rem] w-full mt-16 mb-8  flex flex-col justify-around">
+        <header class="font-main mb-16">
+            <h1 class="text-5xl text-white ">Diagnóstico da Doença da Soja</h1>
+        </header>
+        <main class="flex flex-col">
+           <div class="flex flex-col  ">
+                <div (click) = "toggleData()" class="border-b cursor-pointer py-3 flex flex-row justify-between">
+                    <h2 class="text-4xl text-white">Dados</h2>
+                    <img [src]="dataAppear ? '../../assets/arrow-up.svg' : '../../assets/arrow-down.svg'" >
+                </div>
+                <div 
+                [ngClass]="dataAppear ? 
+                'flex flex-col animate-bounce animation ease-in mt-6 duration-100 items-center max-h-[36rem] overflow-y-scroll' 
+                : 'hidden' "
+                >
+                    <table class="bg-white w-[96%]  ">
+                        <tr class=" text-main font-main text-4xl">
+                            <th class="text-center py-10">Dado</th>
+                            <th class="text-center">Valor</th>
+                        </tr>
+                        <tr *ngFor="let item of dataFilled"
+                        class="text-second-button hover:bg-main-button hover:text-white ease-in duration-100 font-main text-3xl text-center border-r border-main">
+                            <td class="border-r border-main py-8">{{item.data}}</td>
+                            <td>{{item.value}}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+           </div>
+           <div class="flex flex-col mt-2 ">
+                <div (click) = "toggleCases()" class="border-b cursor-pointer py-3 flex flex-row justify-between">
+                    <h2 class="text-4xl text-white">Casos similares</h2>
+                    <img [src]="casesAppear ? '../../assets/arrow-up.svg' : '../../assets/arrow-down.svg'" >
+                </div>
+                <div 
+                [ngClass]="casesAppear ? 
+                'flex flex-col animate-bounce animation ease-in mt-6 duration-100 items-center max-h-[36rem] overflow-y-scroll' 
+                : 'hidden' "
+                >
+                    <table class="bg-white w-[96%]  ">
+                        <tr class=" text-main font-main text-4xl">
+                            <th class="text-center py-10  w-[50%]">Doença</th>
+                            <th class="text-center ">Porcentagem</th>
+                        </tr>
+                        <tr *ngFor="let item of cases"
+                        [ngClass]=" selectedCase === undefined || selectedCase != item.desease ? 'text-second-button hover:bg-main-button hover:text-white ease-in duration-100 font-main text-3xl text-center border-r border-main'
+                         :  
+                         ' bg-main-button text-white ease-in duration-100 font-main text-3xl text-center border-r border-main'
+                         "
+                        (click) = "selectDesease(item.desease)">
+                            <td class="border-r border-main py-8">{{item.desease}}</td>
+                            <td>{{item.percent}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+        <footer class="mt-16">
+            <div class="  flex flex-col items-center mb-5 ">
+                <button 
+                class=" w-full hover:bg-[#27AE60] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-main-button"
+                (click) = "next()"
+                >
+                    Comparar
+                </button>
+            </div>
+            <div class="  flex flex-col items-center ">
+                <button routerLink="../form" class=" w-full hover:bg-[#333] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-second-button">
+                    Voltar
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+

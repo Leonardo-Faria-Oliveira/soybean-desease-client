@@ -1,0 +1,405 @@
+<div [ngClass]="errorBlank ? 'bg-black overflow-y-hidden animate-pulse duration-75 transition-colors ease-out opacity-80 w-full h-[100rem] absolute z-[100]' : 'hidden'"></div>
+<div class=" w-full min-h-screen flex justify-center items-center" >
+    <div class="bg-main rounded-lg p-16 max-w-[90rem] w-full mt-16 mb-8  flex flex-col justify-around">
+        <header class="font-main mb-16">
+            <h1 class="text-5xl text-white">Diagnóstico da Doença da Soja</h1>
+        </header>
+        <app-error-modal  [ngClass]="errorBlank ? 'z-10 w-full relative text-center': 'hidden'" errorMessage="Todos os campos devem ser preenchidos" ></app-error-modal>
+        <form [formGroup] = "form" >
+            <div [ngClass]="formControl == 1 ? 'z-30' : 'hidden'">
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Área danificada</h3>
+                        <select 
+                        formControlName = "damagedAreaValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="damagedArea" 
+                        required>
+                            <option *ngFor="let damage of damagedArea" [ngValue]="damage.value">{{damage.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Decaimento externo</h3>
+                        <select 
+                        formControlName = "externalDecayValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="externalDecay"  
+                        required>
+                            <option *ngFor="let decay of externalDecay" [value]="decay.value">{{decay.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Lesão de cancro</h3>
+                        <select 
+                        formControlName = "cankerLesionValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="cankerLesion"  
+                        required>
+                            <option *ngFor="let lesion of cankerLesion" [value]="lesion.value">{{lesion.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Manchas de frutas</h3>
+                        <select 
+                        formControlName = "fruitSpotsValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="fruitPods"  
+                        required>
+                            <option *ngFor="let pod of fruitSpots" [value]="pod.value">{{pod.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Historico de corte</h3>
+                        <select 
+                        formControlName = "cropHistValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="cropHist"  
+                        required>
+                            <option *ngFor="let crop of cropHist" [value]="crop.value">{{crop.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Corpo frutífero</h3>
+                        <select 
+                        formControlName = "fruitingBodiesValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="fruitingBodies"  
+                        required>
+                            <option *ngFor="let bodies of fruitingBodies" [value]="bodies.value">{{bodies.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Germinação</h3>
+                        <select 
+                        formControlName = "germinationValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="germination"  
+                        required>
+                            <option *ngFor="let germ of germination" [value]="germ.value">{{germ.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Vagens de frutas</h3>
+                        <select 
+                        formControlName = "fruitingPodsValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="fruitingPods"  
+                        required>
+                            <option *ngFor="let pods of fruitPods" [value]="pods.value">{{pods.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="formControl == 2 ? 'z-30' : 'hidden'">
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Possui granizo?</h3>
+                        <select 
+                        formControlName = "hailValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="hail"  
+                        required>
+                            <option *ngFor="let hail of hail" [value]="hail.value">{{hail.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Coloração interna</h3>
+                        <select
+                        formControlName = "intDiscolorValue" 
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="intDiscolor"  
+                        required>
+                            <option *ngFor="let discolor of intDiscolor" [value]="discolor.value">{{discolor.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Malva na folha?</h3>
+                        <select 
+                        formControlName = "leafMalfValue" 
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafMalf"  
+                        required>
+                            <option *ngFor="let malf of leafMalf" [value]="malf.value">{{malf.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Folha suave</h3>
+                        <select 
+                        formControlName = "leafMildValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafMild"  
+                        required>
+                            <option *ngFor="let discolor of intDiscolor" [value]="discolor.value">{{discolor.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Pedaço de folha?</h3>
+                        <select 
+                        formControlName = "leafShreadValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafShread"  
+                        required>
+                            <option *ngFor="let shread of leafShread" [value]="shread.value">{{shread.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Halo nas manchas da folha</h3>
+                        <select 
+                        formControlName = "leafSpotsHaloValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafSpotsHalo"  
+                        required>
+                            <option *ngFor="let halo of leafSpotsHalo" [value]="halo.value">{{halo.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Tamanho das manchas</h3>
+                        <select 
+                        formControlName = "leafSpotsSizeValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafSpotsSize"  
+                        required>
+                            <option *ngFor="let size of leafSpotsSize" [value]="size.value">{{size.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Marg nas manchas</h3>
+                        <select 
+                        formControlName = "leafSpotsMargValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leafSpotsMarg"  
+                        required>
+                            <option *ngFor="let marg of leafSpotsMarg" [value]="marg.value">{{marg.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="formControl == 3 ? 'z-30' : 'hidden'">
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Folhas</h3>
+                        <select 
+                        formControlName = "leavesValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="leaves"  
+                        required>
+                            <option *ngFor="let leave of leaves" [value]="leave.value">{{leave.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Alojamento</h3>
+                        <select 
+                        formControlName = "lodgingValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="lodging"  
+                        required>
+                            <option *ngFor="let lodging of lodging" [value]="lodging.value">{{lodging.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Crescimento de mofo</h3>
+                        <select 
+                        formControlName = "moldGrowthValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="moldGrowth"  
+                        required>
+                            <option *ngFor="let mold of moldGrowth" [value]="mold.value">{{mold.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Micélio</h3>
+                        <select 
+                        formControlName = "myceliumValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="mycelium"  
+                        required>
+                            <option *ngFor="let mycelium of mycelium" [value]="mycelium.value">{{mycelium.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Crescimento da planta</h3>
+                        <select 
+                        formControlName = "plantGrowthValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="plantGrowth"  
+                        required>
+                            <option *ngFor="let plant of plantGrowth" [value]="plant.value">{{plant.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Firmeza das plantas</h3>
+                        <select 
+                        formControlName = "plantStandValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="plantStand"  
+                        required>
+                            <option *ngFor="let stand of plantStand" [value]="stand.value">{{stand.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Precipitação</h3>
+                        <select 
+                        formControlName = "precipValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="precip"  
+                        required>
+                            <option *ngFor="let precip of precip" [value]="precip.value">{{precip.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Raizes</h3>
+                        <select 
+                        formControlName = "rootsValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="roots"  
+                        required>
+                            <option *ngFor="let root of roots" [value]="root.value">{{root.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="formControl == 4 ? 'z-30' : 'hidden'">
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Esclerocio</h3>
+                        <select 
+                        formControlName = "sclerotiaValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="sclerotia"  
+                        required>
+                            <option *ngFor="let sclerotia of sclerotia" [value]="sclerotia.value">{{sclerotia.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Coloração da semente</h3>
+                        <select 
+                        formControlName = "seedDiscolorValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="seedDiscolor"  
+                        required>
+                            <option *ngFor="let discolor of seedDiscolor" [value]="discolor.value">{{discolor.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Gravidade</h3>
+                        <select 
+                        formControlName = "severityValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="severity"  
+                        required>
+                            <option *ngFor="let severity of severity" [value]="severity.value">{{severity.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Semente Tmt</h3>
+                        <select 
+                        formControlName = "seedTmtValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="seedTmt"  
+                        required>
+                            <option *ngFor="let tmt of seedTmt" [value]="tmt.value">{{tmt.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Tronco</h3>
+                        <select 
+                        formControlName = "stemValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="stem"  
+                        required>
+                            <option *ngFor="let stem of stem" [value]="stem.value">{{stem.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Cancro no tronco</h3>
+                        <select 
+                        formControlName = "stemCankerValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="stemCanker"  
+                        required>
+                            <option *ngFor="let canker of stemCanker" [value]="canker.value">{{canker.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-between flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Temperatura</h3>
+                        <select 
+                        formControlName = "tempsValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="temps"  
+                        required>
+                            <option *ngFor="let temp of temps" [value]="temp.value">{{temp.name}}</option>
+                        </select>
+                    </div>
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Mês</h3>
+                        <select 
+                        formControlName = "monthsValue"
+                        class="form-control max-w-md h-16 font-main focus:text-inherit text-gray-400" 
+                        id="months"  
+                        required>
+                            <option *ngFor="let month of months" [value]="month.value">{{month.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group flex flex-row justify-center flex-wrap">
+                    <div class=" w-full max-w-md my-5">
+                        <h3 class="text-[2rem] mb-3 font-main text-white">Porcentagem mínima</h3>
+                       <input 
+                       autocomplete="off" 
+                       name="minPercent" 
+                       class="form-control max-w-md h-16" 
+                       type="text" 
+                       required
+                       formControlName = "minPercent"
+                       />
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+        <footer [ngClass]="formControl != 4 ? 'mt-16' : 'mt-8'">
+            <div  [ngClass]=" formControl == 4 ? 'hidden' : 'flex flex-col items-center mb-5' ">
+                <button (click)=" goAhead() " class=" w-full hover:bg-[#27AE60] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-main-button">
+                    Proximo
+                </button>
+            </div>
+            <div [ngClass]=" formControl == 4 ? 'flex flex-col items-center mb-5 ' : 'hidden' ">
+                <button   (click)=" submit() " class=" w-full hover:bg-[#27AE60] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-main-button">
+                    Enviar
+                </button>
+            </div>
+            <div class="  flex flex-col items-center ">
+                <button [ngClass]="formControl > 1 ? 'z-10' : 'hidden'" (click)="goBack() " class=" w-full hover:bg-[#333] ease-in duration-100 font-main font-extrabold  text-white h-16 rounded-md max-w-md bg-second-button">
+                    Voltar
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!--  [(ngModel)] ="minPercent" -->
